@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input id="mw" type="number" placeholder="Mass weight" value="80">
+        <input id="mh" type="number" placeholder="Mass height" value="1.7">
+    </div>
+    <input id="jw" type="number" placeholder="Join weight" value="70"></div>
+    <input id="jh" type="number" placeholder="Join height" value="1.7"></div>
+    </div>
+    <button onclick="handleClick">Tinh</button>
+    </div>
+    <script>
+        var massWeight = Number(document.getElementById("mw").value);
+        var massHeight =Number(document.getElementById("mh").value);
+        var joinWeight = Number(document.getElementById("jw").value);
+        var joinHeight = Number(document.getElementById("jh").value);
+
+        var MBMI = (massWeight / (massHeight * massHeight));
+        var HBMI = (joinWeight /( joinHeight * joinHeight));
+
+        console.log(MBMI)
+        console.log(HBMI)
+
+        function handleClick() {
+            console.log(MBMI)
+            console.log(HBMI)
+        }
+    </script>
+</body>
+
+</html>

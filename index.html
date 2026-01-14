@@ -17,6 +17,25 @@
     </div>
     <button onclick="handleClick()">Tinh</button>
     </div>
+
+    <hr>
+
+    <div>
+         <h2>Dolphins</h2>
+    <div class="team">
+        <input type="number" id="d1" value="96">
+        <input type="number" id="d2" value="108">
+        <input type="number" id="d3" value="89">
+    </div>
+
+    <h2>Koalas</h2>
+    <div class="team">
+        <input type="number" id="k1" value="88">
+        <input type="number" id="k2" value="91">
+        <input type="number" id="k3" value="110">
+    </div>
+    <button onclick="calculate()">Calculate</button>
+    </div>
     <script>
         var massWeight = Number(document.getElementById("mw").value);
         var massHeight =Number(document.getElementById("mh").value);
@@ -29,9 +48,40 @@
         
 
         const handleClick = ()=> {
-            console.log(MBMI)
-            console.log(HBMI)
+            console.log("MarkBMI:" + MBMI)
+            console.log("JonhBMI:" + HBMI)
            console.log( MBMI > HBMI ? "Mark's BMI is higher than John's!" : "John's BMI is higher than Mark's!")
+        }
+
+        function calculate() {
+            const d1 = Number(document.getElementById("d1").value);
+            const d2 = Number(document.getElementById("d2").value);
+            const d3 = Number(document.getElementById("d3").value);
+
+            const k1 = Number(document.getElementById("k1").value);
+            const k2 = Number(document.getElementById("k2").value);
+            const k3 = Number(document.getElementById("k3").value);
+
+            const dolphinsAvg = (d1 + d2 + d3) / 3;
+            const koalasAvg = (k1 + k2 + k3) / 3;
+
+         
+            if (dolphinsAvg > koalasAvg && dolphinsAvg >= 100) {
+               console.log("Dolphins win the trophy!");
+            } else if (koalasAvg > dolphinsAvg && koalasAvg >= 100) {
+             
+                 console.log("Koalas win the trophy!");
+            } else if (
+                dolphinsAvg === koalasAvg &&
+                dolphinsAvg >= 100 &&
+                koalasAvg >= 100
+            ) {
+               console.log( "It's a draw!");
+            } else {
+              console.log( "No team wins the trophy!");
+            }
+
+            
         }
     </script>
 </body>

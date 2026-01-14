@@ -15,7 +15,7 @@
     <input id="jw" type="number" placeholder="Join weight" value="70"></div>
     <input id="jh" type="number" placeholder="Join height" value="1.7"></div>
     </div>
-    <button onclick="handleClick">Tinh</button>
+    <button onclick="handleClick()">Tinh</button>
     </div>
     <script>
         var massWeight = Number(document.getElementById("mw").value);
@@ -26,12 +26,12 @@
         var MBMI = (massWeight / (massHeight * massHeight));
         var HBMI = (joinWeight /( joinHeight * joinHeight));
 
-        console.log(MBMI)
-        console.log(HBMI)
+        
 
-        function handleClick() {
+        const handleClick = ()=> {
             console.log(MBMI)
             console.log(HBMI)
+           console.log( MBMI > HBMI ? "Mark's BMI is higher than John's!" : "John's BMI is higher than Mark's!")
         }
     </script>
 </body>

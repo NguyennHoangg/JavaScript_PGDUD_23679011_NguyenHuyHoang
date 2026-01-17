@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const BMI = (weight, height) => {
+            return ((weight) / (height * height));
+        }
+
+        const Mark = {
+            name: "Mark",
+            weight: 78,
+            height: 1.69,
+            bmi: function() {
+                return BMI(this.weight, this.height);
+            }
+        }
+
+        const John = {
+            name: "John",
+            weight: 92,
+            height: 1.95,
+            bmi: function() {
+                return BMI(this.weight, this.height);
+            }
+        }
+
+        const markBMI = Mark.bmi();
+        const johnBMI = John.bmi();
+
+        console.log((markBMI > johnBMI) 
+            ? `Mark's BMI (${markBMI.toFixed(1)}) is higher than John's BMI (${johnBMI.toFixed(1)})` 
+            : `John's BMI (${johnBMI.toFixed(1)}) is higher than Mark's BMI (${markBMI.toFixed(1)})`);
+    </script>
+</body>
+</html>

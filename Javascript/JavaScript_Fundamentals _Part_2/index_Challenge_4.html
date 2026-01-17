@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const bills = [125, 555, 44];
+        const tips = [];
+        const total = [];
+        
+        var calcTips = (bills) => {
+            return (bills >= 50 && bills <= 300) ? bills * 0.15 : bills * 0.2;
+        }
+
+        for(let i = 0; i < bills.length; i++){
+            const tip = calcTips(bills[i]);
+            tips.push(tip);
+            total.push(bills[i] + tip);
+        }
+
+        var Average = (arr) => {
+            let sum = 0;
+            for(let i = 0; i < arr.length; i++){
+                sum += arr[i];
+            }
+            return sum / arr.length;
+        }
+        
+        const average = Average(total);
+        
+        console.log("Bills:", bills);
+        console.log("Tips:", tips);
+        console.log("Totals:", total);
+        console.log("Average Total:", average.toFixed(2));
+    </script>
+</body>
+</html>

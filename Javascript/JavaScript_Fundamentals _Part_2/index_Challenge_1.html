@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form>
+            <h2>Dolphins Team</h2>
+            <label>Score 1: <input type="number" id="dolphin-score1" placeholder="Enter score 1"></label><br>
+            <label>Score 2: <input type="number" id="dolphin-score2" placeholder="Enter score 2"></label><br>
+            <label>Score 3: <input type="number" id="dolphin-score3" placeholder="Enter score 3"></label><br>
+            
+            <h2>Koalas Team</h2>
+            <label>Score 1: <input type="number" id="koalas-score1" placeholder="Enter score 1"></label><br>
+            <label>Score 2: <input type="number" id="koalas-score2" placeholder="Enter score 2"></label><br>
+            <label>Score 3: <input type="number" id="koalas-score3" placeholder="Enter score 3"></label><br>
+            
+            <button type="button" onclick="calculateWinner()">Check Winner</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        var calcAverrage = (score1, score2, score3) =>{
+            return average = ((score1 + score2 + score3)/ 3);
+        }
+
+        var checkWiner = (dolPhinsAvergare, koalasAvergare) =>{
+            return dolPhinsAvergare > koalasAvergare ? `DolPhins win ` + dolPhinsAvergare + ' vs ' + koalasAvergare : `Koalas win ` + koalasAvergare + " vs " + dolPhinsAvergare; 
+        }
+
+        function calculateWinner() {
+            var dolphinScore1 = parseFloat(document.getElementById('dolphin-score1').value) || 0;
+            var dolphinScore2 = parseFloat(document.getElementById('dolphin-score2').value) || 0;
+            var dolphinScore3 = parseFloat(document.getElementById('dolphin-score3').value) || 0;
+            
+            var koalasScore1 = parseFloat(document.getElementById('koalas-score1').value) || 0;
+            var koalasScore2 = parseFloat(document.getElementById('koalas-score2').value) || 0;
+            var koalasScore3 = parseFloat(document.getElementById('koalas-score3').value) || 0;
+            
+            var dolphinsAverage = calcAverrage(dolphinScore1, dolphinScore2, dolphinScore3);
+            var koalasAverage = calcAverrage(koalasScore1, koalasScore2, koalasScore3);
+            
+            var result = checkWiner(dolphinsAverage, koalasAverage);
+            document.getElementById('result').innerHTML = '<h3>' + result + '</h3>';
+        }
+    </script>
+</body>
+</html>

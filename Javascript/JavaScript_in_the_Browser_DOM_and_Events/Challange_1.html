@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+ <body style="
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
+  background-color:#222;
+  color:#eee;
+  height:100vh;
+">
+
+  <header style="
+    position:relative;
+    height:35vh;
+    border-bottom:7px solid #eee;
+    text-align:center;
+  ">
+    <h1 style="font-size:3rem; margin-top:2rem;">
+      Guess My Number!
+    </h1>
+
+    <p style="font-size:1rem; margin-top:0.5rem;">
+      (Between 1 and 20)
+    </p>
+
+    <button class="again" style="
+      position:absolute;
+      top:2rem;
+      left:2rem;
+      padding:0.8rem 1.5rem;
+      font-size:1rem;
+      cursor:pointer;
+    ">
+      Again!
+    </button>
+
+    <div class="number" style="
+      background:#eee;
+      color:#222;
+      font-size:4rem;
+      width:15rem;
+      padding:1rem;
+      margin:2rem auto;
+    ">
+      ?
+    </div>
+  </header>
+
+  <main style="
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:65vh;
+  ">
+    <section class="left" style="
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    ">
+      <input placeholder="test" type="number" class="guess" style="
+        width:10rem;
+        font-size:2rem;
+        padding:0.5rem;
+        text-align:center;
+      ">
+
+      <button class="check" style="
+        padding:0.8rem;
+        font-size:1.2rem;
+        cursor:pointer;
+      ">
+        Check!
+      </button>
+    </section>
+
+    <section class="right" style="font-size:1.2rem;">
+      <p class="message" style="margin-bottom:2rem;">
+        Start guessing...
+      </p>
+
+      <p>
+        💯 Score: <span class="score">20</span>
+      </p>
+
+      <p>
+        🥇 Highscore: <span class="highscore">0</span>
+      </p>
+    </section>
+  </main>
+    <script>
+      let secretNumber = Math.trunc(Math.random() * 20) + 1;
+      let score = 20;
+      let highscore = 0;
+
+      // Xử lý nút Check
+      document.querySelector('.check').addEventListener('click', function () {
+        const guess = Number(document.querySelector('.guess').value);
+
+        // Không có input
+        if (!guess) {
+          document.querySelector('.message').textContent = 'Không có số!';
+        }
+        // Đoán đúng
+        else if (guess === secretNumber) {
+          document.querySelector('.message').textContent = '🎉 Đúng rồi!';
+          document.querySelector('.number').textContent = secretNumber;
+          document.body.style.backgroundColor = '#60b347';
+          document.querySelector('.number').style.width = '30rem';
+
+          if (score > highscore) {
+            highscore = score;
+            document.querySelector('.highscore').textContent = highscore;
+          }
+        }
+        // Đoán sai
+        else if (guess !== secretNumber) {
+          if (score > 1) {
+            document.querySelector('.message').textContent = 
+              guess > secretNumber ? 'Quá cao!' : 'Quá thấp!';
+            score--;
+            document.querySelector('.score').textContent = score;
+          } else {
+            document.querySelector('.message').textContent = ' ạn thua!';
+            document.querySelector('.score').textContent = 0;
+          }
+        }
+      });
+
+      // Xử lý nút Again
+      document.querySelector('.again').addEventListener('click', function () {
+        score = 20;
+        secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+        document.querySelector('.message').textContent = 'Bắt đầu đoán...';
+        document.querySelector('.score').textContent = score;
+        document.querySelector('.number').textContent = '?';
+        document.querySelector('.guess').value = '';
+
+        document.body.style.backgroundColor = '#222';
+        document.querySelector('.number').style.width = '15rem';
+      });
+    </script>
+  </body>
+</html>

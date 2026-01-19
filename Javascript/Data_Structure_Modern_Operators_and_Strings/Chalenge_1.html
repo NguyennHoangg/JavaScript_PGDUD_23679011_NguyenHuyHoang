@@ -1,11 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <script>
+      const game = {
+        team1: "Bayern Munich",
+        team2: "Borrussia Dortmund",
+        players: [
+          [
+            "Neuer",
+            "Pavard",
+            "Martinez",
+            "Alaba",
+            "Davies",
+            "Kimmich",
+            "Goretzka",
+            "Coman",
+            "Muller",
+            "Gnarby",
+            "Lewandowski",
+          ],
+          [
+            "Burki",
+            "Schulz",
+            "Hummels",
+            "Akanji",
+            "Hakimi",
+            "Weigl",
+            "Witsel",
+            "Hazard",
+            "Brandt",
+            "Sancho",
+            "Gotze",
+          ],
+        ],
+        score: "4:0",
+        scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+        date: "Nov 9th, 2037",
+        odds: {
+          team1: 1.33,
+          x: 3.25,
+          team2: 6.5,
+        },
+      };
+
+      // 1. Create player arrays for each team
+      const [players1, players2] = game.players;
+
+      // 2. Goalkeeper & field players (team 1 - Bayern)
+      const [gk, ...fieldPlayers] = players1;
+
+      // 3. All players (22 players)
+      const allPlayers = [...players1, ...players2];
+
+      // 4. Final team 1 with substitutes
+      const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+
+      // 5. Odds variables
+      const {
+        odds: { team1, x: draw, team2 },
+      } = game;
+
+      // 6. printGoals function
+      const printGoals = (...players) => {
+        console.log(players);
+        console.log(`${players.length} goals were scored`);
+      };
+
+      // Test data
+      printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+      printGoals(...game.scored);
+
+      // 7. Team more likely to win (NO if/else, NO ternary)
+      team1 < team2 && console.log(game.team1);
+      team2 < team1 && console.log(game.team2);
+    </script>
+  </body>
 </html>

@@ -16,7 +16,7 @@
             weight: 78,
             height: 1.69,
             bmi: function() {
-                return BMI(this.weight, this.height);
+                 BMI(this.weight, this.height);
             }
         }
 
@@ -31,10 +31,11 @@
 
         const markBMI = Mark.bmi();
         const johnBMI = John.bmi();
+        console.log(Mark.bmi)
 
         console.log((markBMI > johnBMI) 
-            ? `Mark's BMI (${markBMI.toFixed(1)}) is higher than John's BMI (${johnBMI.toFixed(1)})` 
-            : `John's BMI (${johnBMI.toFixed(1)}) is higher than Mark's BMI (${markBMI.toFixed(1)})`);
+            ? `Mark's BMI (${markBMI.toFixed(1)}) is higher than John's BMI ` 
+            : `John's BMI (${johnBMI.toFixed(1)}) is higher than Mark's BMI`);
     </script>
 </body>
 </html>

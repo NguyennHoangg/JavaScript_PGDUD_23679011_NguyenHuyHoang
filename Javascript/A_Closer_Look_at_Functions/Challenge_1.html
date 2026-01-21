@@ -25,42 +25,42 @@
         const poll = {
             question: 'What is your favourite programming language?',
             options: ['JavaScript', 'Python', 'Rust', 'C++'],
-            answers: [0, 0, 0, 0]
-        }
+            answers: [0, 0, 0, 0],
 
-        function registerNewAnswer(poll) {
+            registerNewAnswer() {
                 const input = Number(document.getElementById('inp').value);
 
                 if (
                     Number.isInteger(input) &&
                     input >= 0 &&
-                    input < poll.answers.length
+                    input < this.answers.length
                 ) {
-                   poll.answers[input]++;
+                    this.answers[input]++;
                 } else {
                     alert('Lua chon khong hop le!');
                     return;
                 }
 
-              
-               displayResults();
-               displayResults('string');
-            }
+                this.displayResults();
+                this.displayResults('string');
+            },
 
-          function displayResults(type = 'array') {
+            displayResults(type = 'array') {
                 if (type === 'array') {
-                    console.log(poll.answers);
+                    console.log(this.answers);
                 } else if (type === 'string') {
-                    console.log(`Poll results are ${poll.answers.join(', ')}`);
+                    console.log(`Poll results are ${this.answers.join(', ')}`);
                 }
-            };
+            },
+        };
 
-        const btn = document.getElementById('submit');
-        btn.addEventListener('click', function () {
-                registerNewAnswer();
+        document
+            .getElementById('submit')
+            .addEventListener('click', function () {
+                poll.registerNewAnswer();
             });
-
     </script>
+
 </body>
 
 </html>

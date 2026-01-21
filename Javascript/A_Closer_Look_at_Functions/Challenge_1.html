@@ -17,7 +17,7 @@
             <li>C++</li>
         </ol>
         <span>Chon cau tra loi cua ban</span>
-        <input type="number" max="4" min="1" id="inp">
+        <input type="number" max="3" min="0" id="inp">
         <button id="submit">Submit</button>
     </div>
 
@@ -25,39 +25,39 @@
         const poll = {
             question: 'What is your favourite programming language?',
             options: ['JavaScript', 'Python', 'Rust', 'C++'],
-            answers: [0, 0, 0, 0],
+            answers: [0, 0, 0, 0]
+        }
 
-            registerNewAnswer() {
+        function registerNewAnswer(poll) {
                 const input = Number(document.getElementById('inp').value);
 
                 if (
                     Number.isInteger(input) &&
                     input >= 0 &&
-                    input < this.answers.length
+                    input < poll.answers.length
                 ) {
-                    this.answers[input]++;
+                   poll.answers[input]++;
                 } else {
                     alert('Lua chon khong hop le!');
                     return;
                 }
 
               
-                this.displayResults();
-                this.displayResults('string');
-            },
+               displayResults();
+               displayResults('string');
+            }
 
-            displayResults(type = 'array') {
+          function displayResults(type = 'array') {
                 if (type === 'array') {
-                    console.log(this.answers);
+                    console.log(poll.answers);
                 } else if (type === 'string') {
-                    console.log(`Poll results are ${this.answers.join(', ')}`);
+                    console.log(`Poll results are ${poll.answers.join(', ')}`);
                 }
-            },
-        };
+            };
 
         const btn = document.getElementById('submit');
         btn.addEventListener('click', function () {
-                poll.registerNewAnswer();
+                registerNewAnswer();
             });
 
     </script>

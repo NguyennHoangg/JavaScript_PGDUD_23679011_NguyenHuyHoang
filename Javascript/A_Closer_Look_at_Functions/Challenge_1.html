@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1>What is your favourite programming language?</h1>
+        <ol>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Rust</li>
+            <li>C++</li>
+        </ol>
+        <span>Chon cau tra loi cua ban</span>
+        <input type="number" max="3" min="0" id="inp">
+        <button id="submit">Submit</button>
+    </div>
+
+    <script>
+        const poll = {
+            question: 'What is your favourite programming language?',
+            options: ['JavaScript', 'Python', 'Rust', 'C++'],
+            answers: [0, 0, 0, 0],
+
+            registerNewAnswer() {
+                const input = Number(document.getElementById('inp').value);
+
+                if (
+                    Number.isInteger(input) &&
+                    input >= 0 &&
+                    input < this.answers.length
+                ) {
+                    this.answers[input]++;
+                } else {
+                    alert('Lua chon khong hop le!');
+                    return;
+                }
+
+                this.displayResults();
+                this.displayResults('string');
+            },
+
+            displayResults(type = 'array') {
+                if (type === 'array') {
+                    console.log(this.answers);
+                } else if (type === 'string') {
+                    console.log(`Poll results are ${this.answers.join(', ')}`);
+                }
+            },
+        };
+
+        document
+            .getElementById('submit')
+            .addEventListener('click', function () {
+                poll.registerNewAnswer();
+            });
+    </script>
+
+</body>
+
+</html>

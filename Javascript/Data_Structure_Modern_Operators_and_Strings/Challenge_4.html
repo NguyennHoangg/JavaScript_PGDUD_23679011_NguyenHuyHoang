@@ -1,24 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body>
+</head>
+
+<body>
+    <textarea rows="6"></textarea>
+    <button>Convert</button>
     <script>
-            document.body.append(document.createElement("textarea"));
-            document.body.append(document.createElement("button"));
 
-            const textarea = document.querySelector('textarea');
-            const submit = document.querySelector('button');
+        document.querySelector('button').addEventListener('click', function () {
+            const text = document.querySelector('textarea').value;
 
-            submit.textContent = 'Convert to CameCase';
 
-            submit.addEventListener('click', function(){
-                  const text = textarea.value;
-                  
-            })
+            const rows = text.split('\n');
+
+            for (const [index, row] of rows.entries()) {
+
+                const lower = row.trim().toLowerCase();
+
+                if (!lower) continue;
+
+
+                const [first, second] = lower.split('_');
+
+                const camelCase =
+                    first + second[0].toUpperCase() + second.slice(1);
+
+
+                console.log(`${camelCase} ${'✅'.repeat(index + 1)}`);
+            }
+        });
+
     </script>
-  </body>
+
+
+</body>
+
 </html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Where Am I</title>
+  </head>
+  <body>
+    <script>
+      const renderCountry = (data) => {
+        console.log(`Country: ${data.name.common}`);
+      };
+
+      const whereAmI = (lat, lng) => {
+        fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+          .then((response) => {
+            if (!response.ok)
+              throw new Error(`Geocoding error (${response.status})`);
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+
+            //CHECK CỰC KỲ QUAN TRỌNG
+            if (!data.country) throw new Error("Location data incomplete");
+
+            console.log(`You are in ${data.city}, ${data.country}`);
+
+            return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+          })
+          .then((response) => {
+            if (!response.ok)
+              throw new Error(`Country not found (${response.status})`);
+            return response.json();
+          })
+          .then((data) => {
+            renderCountry(data[0]);
+          })
+          .catch((err) => {
+            console.error(err.message);
+          });
+      };
+
+      whereAmI(52.508, 13.381);
+    </script>
+  </body>
+</html>

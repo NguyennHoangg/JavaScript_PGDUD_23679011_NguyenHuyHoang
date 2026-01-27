@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Constructor
+      const Car = function (make, speed) {
+        this.make = make;
+        this.speed = speed;
+      };
+
+      //Thêm method cho Car
+      Car.prototype.accelerate = function () {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+      };
+
+      Car.prototype.brake = function () {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+      };
+
+      //Constructor function EV (kế thừa từ Car)
+      const EV = function (make, speed, charge) {
+        Car.call(this, make, speed);
+        this.charge = charge;
+      };
+
+      //Kế thừa prototype
+      EV.prototype = Object.create(Car.prototype);
+
+      //Method chargeBattery
+      EV.prototype.chargeBattery = function (chargeTo) {
+        this.charge = chargeTo;
+      };
+
+      //Override accelerate (Polymorphism)
+      EV.prototype.accelerate = function () {
+        this.speed += 20;
+        this.charge--;
+        console.log(
+          `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`,
+        );
+      };
+
+      const tesla = new EV("Tesla", 120, 23);
+
+      tesla.accelerate(); // +20 km/h, -1%
+      tesla.brake(); // dùng method của Car
+      tesla.chargeBattery(90);
+      tesla.accelerate();
+    </script>
+  </body>
+</html>
